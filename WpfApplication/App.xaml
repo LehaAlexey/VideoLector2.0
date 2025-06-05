@@ -1,0 +1,105 @@
+﻿<Application x:Class="VideoLecturer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:wmp="clr-namespace:WMPLib;assembly=interop.WMPLib"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:VideoLecturer">
+
+
+    <Application.Resources>
+        <!-- Цвета -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#FF3F51B5"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#FFFF4081"/>
+        <SolidColorBrush x:Key="DangerColor" Color="#FFF44336"/>
+        <SolidColorBrush x:Key="LightGray" Color="#FFEEEEEE"/>
+        <SolidColorBrush x:Key="MediumGray" Color="#FFE0E0E0"/>
+        <SolidColorBrush x:Key="DarkGray" Color="#FFBDBDBD"/>
+
+        <!-- Основные стили -->
+        <Style x:Key="BaseButton" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="ActionButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+        </Style>
+
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+        </Style>
+
+        <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="{StaticResource DangerColor}"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="{StaticResource DangerColor}"/>
+        </Style>
+
+        <Style x:Key="SmallButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <!-- Текстовые блоки -->
+        <Style x:Key="FilePathTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="#FF2D9200"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+
+        <!-- Комбобоксы -->
+        <Style x:Key="RoundedComboBox" TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DarkGray}"/>
+        </Style>
+
+        <!-- Текстовые поля -->
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DarkGray}"/>
+        </Style>
+
+        <!-- Радиокнопки -->
+        <Style x:Key="PositionRadioButton" TargetType="RadioButton">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!-- Список фрагментов -->
+        <Style x:Key="FragmentsListView" TargetType="ListView">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DarkGray}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- Список лекторов -->
+        <Style x:Key="LectorsListView" TargetType="ListView">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DarkGray}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- Шаблон лектора -->
+        <DataTemplate x:Key="LectorTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding ImagePath}" Width="50" Height="50" Margin="0,0,10,0"
+                  Stretch="UniformToFill"/>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

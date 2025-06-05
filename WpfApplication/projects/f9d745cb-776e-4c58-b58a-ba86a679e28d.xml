@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>f9d745cb-776e-4c58-b58a-ba86a679e28d</Id>
+  <Name>Новый проектffds223123</Name>
+  <TextFilePath>C:\Users\scriber\Desktop\листРазработки.txt</TextFilePath>
+  <PdfFilePath>C:\Users\scriber\Desktop\Blazor в действии.pdf</PdfFilePath>
+  <LectorId>00000000-0000-0000-0000-000000000000</LectorId>
+  <Position>TopRight</Position>
+  <Fragments />
+  <CreationDate>2025-06-04T23:23:18.574311+05:00</CreationDate>
+</Project>

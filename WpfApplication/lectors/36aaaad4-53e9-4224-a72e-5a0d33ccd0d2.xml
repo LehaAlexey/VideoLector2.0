@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LectorProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="36aaaad4-53e9-4224-a72e-5a0d33ccd0d2">
+  <Name>Плотоненко Ю.А. Темная футблока</Name>
+  <ImagePath>E:\fignya\WpfApplication\lectors\36aaaad4-53e9-4224-a72e-5a0d33ccd0d2\plotonenko_u_a.png</ImagePath>
+  <VoicePath>E:\fignya\WpfApplication\lectors\36aaaad4-53e9-4224-a72e-5a0d33ccd0d2\plotonenko_1.mp3</VoicePath>
+</LectorProfile>

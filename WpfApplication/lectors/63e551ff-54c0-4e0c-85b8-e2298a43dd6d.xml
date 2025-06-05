@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LectorProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="63e551ff-54c0-4e0c-85b8-e2298a43dd6d">
+  <Name>ывсавыаываыаываываываываыва</Name>
+  <ImagePath>E:\fignya\WpfApplication\lectors\63e551ff-54c0-4e0c-85b8-e2298a43dd6d\1047e1e117d07ccb.png</ImagePath>
+  <VoicePath>E:\fignya\WpfApplication\lectors\63e551ff-54c0-4e0c-85b8-e2298a43dd6d\audiomass-output.mp3</VoicePath>
+</LectorProfile>

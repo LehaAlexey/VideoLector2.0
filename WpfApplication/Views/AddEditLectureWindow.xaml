@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfApplication.Views.AddEditLectorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication.Views"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle}" Height="280" Width="260"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Название лектора -->
+        <TextBlock Grid.Row="0" Text="Имя лектора:" Margin="0,0,0,2"/>
+        <TextBox Grid.Row="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="0,0,0,6" Height="22"/>
+
+        <!-- Фото лектора -->
+        <TextBlock Grid.Row="2" Text="Фотография:" Margin="0,4,0,2"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,6">
+            <Button Content="Выбрать..." Command="{Binding SelectImageCommand}" 
+                    Width="80" Margin="0,0,6,0" Padding="2"/>
+            <TextBlock Text="{Binding ImagePath}" TextTrimming="CharacterEllipsis" 
+                       VerticalAlignment="Center" Width="140"/>
+        </StackPanel>
+
+        <!-- Голос лектора -->
+        <TextBlock Grid.Row="4" Text="Образец голоса:" Margin="0,2,0,2"/>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,0,0,54" >
+            <Button Content="Выбрать..." Command="{Binding SelectVoiceCommand}" 
+                    Width="80" Margin="0,0,6,0" Padding="2"/>
+            <TextBlock Text="{Binding VoicePath}" TextTrimming="CharacterEllipsis" 
+                       VerticalAlignment="Center" Width="140"/>
+        </StackPanel>
+
+        <!-- Кнопки сохранения/отмены -->
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="Отмена" Command="{Binding CancelCommand}" 
+                    Width="70" Margin="0,0,6,0" Padding="2"/>
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" 
+                    Width="70" IsDefault="True" Padding="2"/>
+        </StackPanel>
+    </Grid>
+</Window>
