@@ -75,6 +75,7 @@ namespace WpfApplication.Core.ViewModels
         public ICommand SelectTextCommand { get; }
         public ICommand SelectPdfCommand { get; }
         public ICommand GenerateAllCommand { get; }
+        public ICommand CancelGenerationCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
@@ -122,6 +123,7 @@ namespace WpfApplication.Core.ViewModels
             SelectTextCommand = new RelayCommand(SelectTextFile);
             SelectPdfCommand = new RelayCommand(SelectPdfFile);
             GenerateAllCommand = new AsyncRelayCommand(GenerateAllFragmentsAsync);
+            CancelGenerationCommand = new RelayCommand(CancelGeneration);
             SaveCommand = new RelayCommand(SaveProject);
             DeleteCommand = new RelayCommand(DeleteProject);
             LoadFragments();
@@ -160,30 +162,28 @@ namespace WpfApplication.Core.ViewModels
 
             try
             {
-                var slideTexts = File.ReadAllText(_project.TextFilePath).Split("_;");
+                var slideTexts = File.ReadAllText(_project.TextFilePath);
 
 
                 var generationId = Guid.NewGuid();
 
-                for (int i = 0; i < slideTexts.Length; i++)
+
+                var fragmentDir = await _pythonApi.GenerateVideoFragment(
+                    (_projectManager as ProjectStorage)._fragmentsPath,
+                    SelectedLector.ImagePath,
+                    SelectedLector.VoicePath,
+                    slideTexts,
+                    _project.Id);
+
+                var videoFiles = Directory.GetFiles(fragmentDir, "video_fragment_*.mp4");
+                var i = 0;
+                foreach (var videoFile in videoFiles)
                 {
-                    if (_generationCts?.IsCancellationRequested ?? false)
-                        break;
-
-                    var fragmentDir = await _pythonApi.GenerateVideoFragment(
-                        (_projectManager as ProjectStorage)._fragmentsPath,
-                        SelectedLector.ImagePath,
-                        SelectedLector.VoicePath,
-                        slideTexts[i],
-                        _project.Id);
-
-                    var videoFiles = Directory.GetFiles(fragmentDir, "video_fragment_*.mp4");
-                    foreach (var videoFile in videoFiles)
-                    {
-                        var fragment = new VideoFragment(i + 1, videoFile);
-                        Fragments.Add(new VideoFragmentViewModel(fragment));
-                    }
+                    var fragment = new VideoFragment(i + 1, videoFile);
+                    Fragments.Add(new VideoFragmentViewModel(fragment));
+                    i++;
                 }
+                
             }
             catch (OperationCanceledException)
             {
@@ -244,7 +244,7 @@ namespace WpfApplication.Core.ViewModels
 
         private void CancelGeneration()
         {
-            _generationCts?.Cancel();
+            _pythonApi.CancelGeneration();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
