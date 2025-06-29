@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LectorProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="ca691b06-2d14-4db6-8f9d-93f69976b614">
+  <Name>Дробышевский С.В.</Name>
+  <ImagePath>E:\practice\WpfApplication\lectors\ca691b06-2d14-4db6-8f9d-93f69976b614\drobyshevsky-sv.jpg</ImagePath>
+  <VoicePath>E:\practice\WpfApplication\lectors\ca691b06-2d14-4db6-8f9d-93f69976b614\drobyshevsky.mp3</VoicePath>
+</LectorProfile>

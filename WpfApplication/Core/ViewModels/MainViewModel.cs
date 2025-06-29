@@ -87,7 +87,7 @@ namespace WpfApplication.Core.ViewModels
         {
             var window = new AddEditLectorWindow(_lectorManager)
             {
-                Owner = Application.Current.MainWindow
+                Owner = System.Windows.Application.Current.MainWindow
             };
             window.ShowDialog();
         }
@@ -96,7 +96,7 @@ namespace WpfApplication.Core.ViewModels
         {
             var window = new LectorManagerWindow(_lectorManager)
             {
-                Owner = Application.Current.MainWindow
+                Owner = System.Windows.Application.Current.MainWindow
             };
             window.ShowDialog();
         }
@@ -108,12 +108,12 @@ namespace WpfApplication.Core.ViewModels
                 try
                 {
                     CurrentProject.SaveProject();
-                    MessageBox.Show("Проект успешно сохранен", "Сохранение",
+                    System.Windows.MessageBox.Show("Проект успешно сохранен", "Сохранение",
                                  MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка",
+                    System.Windows.MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка",
                                  MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

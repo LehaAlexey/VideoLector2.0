@@ -7,6 +7,7 @@ using WpfApplication.Core.Models;
 using WpfApplication.Core.Services;
 using WpfApplication.Views;
 using static WpfApplication.Core.ViewModels.ProjectViewModel;
+using Application = System.Windows.Application;
 
 namespace WpfApplication.Core.ViewModels
 {
@@ -72,7 +73,7 @@ namespace WpfApplication.Core.ViewModels
 
         private void SelectImage()
         {
-            var dialog = new OpenFileDialog
+            var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 Filter = "Изображения|*.jpg;*.jpeg;*.png",
                 Title = "Выберите фотографию лектора"
@@ -86,7 +87,7 @@ namespace WpfApplication.Core.ViewModels
 
         private void SelectVoice()
         {
-            var dialog = new OpenFileDialog
+            var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 Filter = "Аудио файлы|*.mp3",
                 Title = "Выберите образец голоса"
@@ -157,7 +158,7 @@ namespace WpfApplication.Core.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при сохранении лектора: {ex.Message}",
+                System.Windows.MessageBox.Show($"Ошибка при сохранении лектора: {ex.Message}",
                               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 

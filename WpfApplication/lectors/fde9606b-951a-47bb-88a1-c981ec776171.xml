@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LectorProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="fde9606b-951a-47bb-88a1-c981ec776171">
+  <Name>Плотоненко Ю. А.</Name>
+  <ImagePath>E:\practice\WpfApplication\lectors\fde9606b-951a-47bb-88a1-c981ec776171\plotonenko_u_a.png</ImagePath>
+  <VoicePath>E:\practice\WpfApplication\lectors\fde9606b-951a-47bb-88a1-c981ec776171\plotonenko_1.mp3</VoicePath>
+</LectorProfile>

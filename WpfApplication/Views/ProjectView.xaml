@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:VideoLecturer.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="923" Cursor="">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -35,27 +36,27 @@
                     <!-- Выбор лектора -->
                     <GroupBox Header="Лектор" Margin="0,10,0,0" Background="White" Padding="10">
                         <ComboBox ItemsSource="{Binding AvailableLectors}"
-                 SelectedItem="{Binding SelectedLector}"
-                 ItemTemplate="{StaticResource LectorTemplate}"
-                 Style="{StaticResource RoundedComboBox}"/>
+                                  SelectedItem="{Binding SelectedLector}"
+                                  ItemTemplate="{StaticResource LectorTemplate}"
+                                  Style="{StaticResource RoundedComboBox}"/>
                     </GroupBox>
 
                     <!-- Исходные файлы -->
                     <GroupBox Header="Исходные файлы" Margin="0,10,0,0" Background="White" Padding="10">
                         <StackPanel>
                             <Button Content="Выбрать текст лекции" 
-                   Command="{Binding SelectTextCommand}"
-                   Style="{StaticResource ActionButton}"/>
+                                    Command="{Binding SelectTextCommand}"
+                                    Style="{StaticResource ActionButton}"/>
                             <TextBlock Text="{Binding TextFilePath}" 
-                      TextWrapping="Wrap" Margin="0,5,0,10"
-                      Style="{StaticResource FilePathTextBlock}"/>
+                                       TextWrapping="Wrap" Margin="0,5,0,10"
+                                       Style="{StaticResource FilePathTextBlock}"/>
 
                             <Button Content="Выбрать презентацию" 
-                   Command="{Binding SelectPdfCommand}"
-                   Style="{StaticResource ActionButton}"/>
-                            <TextBlock Text="{Binding PdfFilePath}" 
-                      TextWrapping="Wrap" Margin="0,5,0,0"
-                      Style="{StaticResource FilePathTextBlock}"/>
+                                    Command="{Binding SelectPptxCommand}"
+                                    Style="{StaticResource ActionButton}"/>
+                            <TextBlock Text="{Binding PptxFilePath}" 
+                                       TextWrapping="Wrap" Margin="0,5,0,0"
+                                       Style="{StaticResource FilePathTextBlock}"/>
                         </StackPanel>
                     </GroupBox>
 
@@ -63,17 +64,17 @@
                     <GroupBox Header="Позиция видео" Margin="0,10,0,0" Background="White" Padding="10">
                         <UniformGrid Columns="2" Rows="2">
                             <RadioButton Content="Сверху слева" GroupName="VideoPosition"
-                       IsChecked="{Binding IsTopLeft}"
-                       Style="{StaticResource PositionRadioButton}"/>
+                                         IsChecked="{Binding IsTopLeft}"
+                                         Style="{StaticResource PositionRadioButton}"/>
                             <RadioButton Content="Сверху справа" GroupName="VideoPosition"
-                       IsChecked="{Binding IsTopRight}"
-                       Style="{StaticResource PositionRadioButton}"/>
+                                         IsChecked="{Binding IsTopRight}"
+                                         Style="{StaticResource PositionRadioButton}"/>
                             <RadioButton Content="Снизу слева" GroupName="VideoPosition"
-                       IsChecked="{Binding IsBottomLeft}"
-                       Style="{StaticResource PositionRadioButton}"/>
+                                         IsChecked="{Binding IsBottomLeft}"
+                                         Style="{StaticResource PositionRadioButton}"/>
                             <RadioButton Content="Снизу справа" GroupName="VideoPosition"
-                       IsChecked="{Binding IsBottomRight}"
-                       Style="{StaticResource PositionRadioButton}"/>
+                                         IsChecked="{Binding IsBottomRight}"
+                                         Style="{StaticResource PositionRadioButton}"/>
                         </UniformGrid>
                     </GroupBox>
                 </StackPanel>
@@ -90,71 +91,62 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Область предпросмотра с возможностью прокрутки слайдов -->
-            <ScrollViewer Grid.Row="0" 
-                        VerticalScrollBarVisibility="Disabled"
-                        HorizontalScrollBarVisibility="Auto"
-                        PanningMode="HorizontalOnly"
-                        HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Horizontal">
-                    <!-- Здесь будут элементы слайдов -->
-                    <ItemsControl ItemsSource="{Binding Slides}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="10"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Width="400" Height="300" Margin="10,0"
-                                       BorderBrush="Gray" BorderThickness="1"
-                                       CornerRadius="5" Background="White">
-                                    <Grid>
-                                        <!-- PDF слайд -->
-                                        <Image Source="{Binding ImagePath}" Stretch="Uniform"/>
+            <!-- Область предпросмотра слайдов -->
+            <Viewbox Grid.Row="0" Stretch="Uniform">
+                <ContentControl Content="{Binding CurrentSlide}">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Border Margin="10" Background="White" CornerRadius="5" Padding="5" Width="800" Height="600">
+                                <Grid>
+                                    <!-- Изображение слайда -->
+                                    <Image Source="{Binding CurrentImage}" 
+                               Stretch="Uniform"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
 
-                                        <!-- Видео поверх PDF -->
-                                        <MediaElement Source="{Binding VideoPath}"
-                                                     Width="150" Margin="20"
-                                                     HorizontalAlignment="{Binding VideoPosition.Horizontal}"
-                                                     VerticalAlignment="{Binding VideoPosition.Vertical}"/>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
+                                    <!-- Видео поверх слайда -->
+                                    <MediaElement Source="{Binding VideoPath}"
+                                     Width="150" 
+                                     Height="120"
+                                     Margin="0,70"
+                                     
+                                     HorizontalAlignment="{Binding VideoHorizontalAlignment}"
+                                     VerticalAlignment="{Binding VideoVerticalAlignment}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Viewbox>
 
-            <!-- Панель фрагментов с улучшенной прокруткой -->
+            <!-- Панель фрагментов -->
             <Border Grid.Row="1" Background="#FFE8E8E8" CornerRadius="5" Padding="10" Margin="0,10,0,0" MaxHeight="200">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="293*"/>
-                        <ColumnDefinition Width="262*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,4" Grid.RowSpan="2">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,4">
                         <TextBlock Text="Текущий слайд:" Margin="0,0,5,0"/>
                         <TextBlock Text="{Binding CurrentSlideIndex}" FontWeight="Bold"/>
                         <TextBlock Text="/" Margin="5,0,5,0"/>
                         <TextBlock Text="{Binding TotalSlides}" FontWeight="Bold"/>
 
                         <Button Content="Перегенерировать" 
-                              Command="{Binding RegenerateCurrentFragmentCommand}"
-                              Style="{StaticResource ActionButton}" Margin="20,0,0,0"/>
+                                Command="{Binding RegenerateCurrentFragmentCommand}"
+                                Style="{StaticResource ActionButton}" Margin="20,0,0,0"/>
                     </StackPanel>
 
                     <ScrollViewer Grid.Row="1" 
-                                VerticalScrollBarVisibility="Auto"
-                                HorizontalScrollBarVisibility="Disabled"
-                                PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.ColumnSpan="2">
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
                         <ListView ItemsSource="{Binding Fragments}" 
-                                SelectedItem="{Binding SelectedFragment}">
+          SelectedItem="{Binding SelectedFragment, Mode=TwoWay}"
+          SelectionMode="Single">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Margin="0,2">
@@ -167,11 +159,11 @@
 
                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                                             <Button Content="▶" Command="{Binding PreviewCommand}"
-                      Style="{StaticResource SmallButton}"/>
+                            Style="{StaticResource SmallButton}"/>
                                             <Button Content="🔄" Command="{Binding RegenerateCommand}"
-                      Style="{StaticResource SmallButton}"/>
+                            Style="{StaticResource SmallButton}"/>
                                             <TextBlock Text="{Binding SlideNumber, StringFormat='Слайд {0}'}" 
-          VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" Margin="5,0,0,0"/>
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
@@ -183,23 +175,21 @@
         </Grid>
 
         <!-- Кнопки управления -->
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" 
+        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" 
                    HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
+            
             <Button Content="Генерировать все" 
-       Command="{Binding GenerateAllCommand}"
-       Style="{StaticResource PrimaryButton}" Margin="1,0,0,0" 
-       Height="40" FontSize="9"/>
+                    Command="{Binding GenerateAllCommand}"
+                    Style="{StaticResource PrimaryButton}" Margin="5,0,0,0"/>
             <Button Content="Экспорт" 
-       Command="{Binding ExportCommand}"
-       Style="{StaticResource ActionButton}" Margin="1,0,0,0" 
-       Height="40" FontSize="9"/>
+                    Command="{Binding ExportCommand}"
+                    Style="{StaticResource ActionButton}" Margin="5,0,0,0"/>
             <Button Content="Удалить" 
-       Command="{Binding DeleteCommand}"
-       Style="{StaticResource DangerButton}" Margin="1,0,0,0" 
-        Height="40" FontSize="9"/>
+                    Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DangerButton}" Margin="5,0,0,0"/>
             <Button Content="Отмена генерации" 
-        Command="{Binding CancelGenerationCommand}"
-        Style="{StaticResource DangerButton}" FontSize="9" Height="40"/>
+                    Command="{Binding CancelGenerationCommand}"
+                    Style="{StaticResource DangerButton}" Margin="5,0,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -42,15 +42,13 @@ namespace VideoLecturer.Infrastructure.PythonAPI
 
                 _generationCts = new CancellationTokenSource();
 
-                var digits = Regex.Replace(projectId.ToString(), "[^0-9]", "");
-                int Id = int.Parse(digits.Length > 9 ? digits.Substring(0, 9) : digits);
                 var requestData = new
                 {
                     face_path = faceImagePath.Replace("\\", "/"),
                     voice_path = voicePath.Replace("\\", "/"),
                     lecture_text_path = textFilePath.Replace("\\", "/"),
                     generated_dir_path = projectDir.Replace("\\", "/"),
-                    id = Id
+                    id = 0
                 };
 
                 var response = await _httpClient.PostAsJsonAsync(

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,7 +38,6 @@ namespace VideoLecturer
                 oldVm.ActiveProjectChanged -= OnActiveProjectChanged;
             }
         }
-
         private void OnActiveProjectChanged(ProjectViewModel newProject)
         {
             // Находим ProjectView в визуальном дереве

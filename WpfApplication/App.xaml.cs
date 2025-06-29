@@ -11,7 +11,7 @@ namespace VideoLecturer
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         private static readonly string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string SolutionPath = FindSolutionPath(BaseDirectory);

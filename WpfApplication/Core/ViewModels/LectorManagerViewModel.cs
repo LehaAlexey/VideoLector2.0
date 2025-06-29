@@ -51,7 +51,7 @@ namespace WpfApplication.Core.ViewModels
         {
             var window = new AddEditLectorWindow(_lectorManager)
             {
-                Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive)
+                Owner = System.Windows.Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive)
             };
 
             if (window.ShowDialog() == true)
@@ -71,7 +71,7 @@ namespace WpfApplication.Core.ViewModels
 
             var window = new AddEditLectorWindow(_lectorManager, SelectedLector)
             {
-                Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive)
+                Owner = System.Windows.Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive)
             };
 
             if (window.ShowDialog() == true)
@@ -88,7 +88,7 @@ namespace WpfApplication.Core.ViewModels
         {
             if (SelectedLector == null) return;
 
-            if (MessageBox.Show("Удалить выбранного лектора?", "Подтверждение",
+            if (System.Windows.MessageBox.Show("Удалить выбранного лектора?", "Подтверждение",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 var lectorToRemove = SelectedLector;

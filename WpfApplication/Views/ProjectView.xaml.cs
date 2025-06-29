@@ -20,7 +20,7 @@ namespace VideoLecturer.Views
     /// <summary>
     /// Логика взаимодействия для ProjectView.xaml
     /// </summary>
-    public partial class ProjectView : UserControl
+    public partial class ProjectView : System.Windows.Controls.UserControl
     {
         public static readonly DependencyProperty ViewModelProperty =
                 DependencyProperty.Register(
@@ -59,11 +59,15 @@ namespace VideoLecturer.Views
         {
             // Принудительно обновляем DataContext
             DataContext = newProject;
-
+            //if (DataContext is ProjectViewModel oldProject)
+            //{
+            //    oldProject.ClearResources();
+            //}
             // Дополнительные действия при смене проекта
             if (newProject != null)
             {
-                newProject.LoadFragments(); // Например, перезагружаем фрагменты
+                newProject.InitializeFragments(); // Например, перезагружаем фрагменты
+                newProject.InitializeSlides();
             }
         }
         public ProjectView()

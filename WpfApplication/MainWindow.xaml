@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoLecturer.Views"
         mc:Ignorable="d"
-        Title="Видеолектор" MinHeight="600" MinWidth="800"
+        Title="Видеолектор" MinHeight="600" MinWidth="923"
         WindowStartupLocation="CenterScreen" Background="#FFF0F0F0">
 
     <DockPanel>

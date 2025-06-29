@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LectorProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="612ab1aa-1bb1-41f4-87ab-ce47d6f98f27">
+  <Name>Сурдин В. Г.</Name>
+  <ImagePath>E:\practice\WpfApplication\lectors\612ab1aa-1bb1-41f4-87ab-ce47d6f98f27\surdin.jpg</ImagePath>
+  <VoicePath>E:\practice\WpfApplication\lectors\612ab1aa-1bb1-41f4-87ab-ce47d6f98f27\surdin.mp3</VoicePath>
+</LectorProfile>

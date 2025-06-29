@@ -25,7 +25,7 @@ namespace VideoLecturer.Core.Models
         }
 
         public string TextFilePath { get; set; }
-        public string PdfFilePath { get; set; }
+        public string PptxFilePath { get; set; }
         public Guid LectorId { get; set; }
         [XmlElement("VideoPosition")]
         public VideoPosition Position { get; set; } = VideoPosition.TopRight;
