@@ -89,7 +89,7 @@ namespace WpfApplication.Core.ViewModels
         {
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
-                Filter = "Аудио файлы|*.mp3",
+                Filter = "Аудио файлы|*.wav",
                 Title = "Выберите образец голоса"
             };
 
