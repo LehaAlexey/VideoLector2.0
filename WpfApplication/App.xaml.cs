@@ -29,9 +29,19 @@ namespace VideoLecturer
         private static readonly string StoragePath = Path.Combine(SolutionPath, "projects");
         private static readonly string FragmentPath = Path.Combine(SolutionPath, "generated");
         private static readonly string LectorPath = Path.Combine(SolutionPath, "lectors");
+
+        private static void EnsureDirectoriesExist()
+        {
+            Directory.CreateDirectory(StoragePath);
+            Directory.CreateDirectory(FragmentPath);
+            Directory.CreateDirectory(LectorPath);
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            EnsureDirectoriesExist();
 
             var projectManager = new ProjectStorage(StoragePath, FragmentPath);
             var lectorManager = new LectorManager(LectorPath);

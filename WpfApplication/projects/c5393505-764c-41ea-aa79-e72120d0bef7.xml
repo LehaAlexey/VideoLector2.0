@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Id>c5393505-764c-41ea-aa79-e72120d0bef7</Id>
-  <Name>Новая тестовая запись</Name>
+  <Name>Тест. Без генерации</Name>
   <TextFilePath>C:\Users\scriber\Desktop\Текст_мобильный_рендеринг.txt</TextFilePath>
   <PptxFilePath>C:\Users\scriber\Desktop\Мобильный рендерниг.pptx</PptxFilePath>
   <LectorId>fde9606b-951a-47bb-88a1-c981ec776171</LectorId>
